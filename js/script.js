@@ -19,36 +19,45 @@ const quotes = [
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
     citation: 'So Many Tears',
-    year: 1995
+    year: 1995,
+    category: 'Mainstream Rap',
+    region: 'West Coast'
   },
   {
     quote: 'Being happy is my goal, but greatness is my mission.',
     source: 'Childish Gambino',
     citation: 'I\'m Alright',
-    year: 2010
+    year: 2010,
+    category: 'Mainstream Hip Hop'
   },
   {
     quote: 'Nobody built like you, you design yourself.',
     source: 'Jay-Z',
     citation: 'A Dream',
-    year: 2002
+    year: 2002,
+    category: 'Mainstream Rap',
+    region: 'East Coast'
   },
   {
     quote: 'Everybody dies, but not everybody lives.',
     source: 'Drake',
     citation: 'Moment 4 Life',
-    year: 2010
+    year: 2010,
+    category: 'Mainstream Rap'
   },
   {
     quote: 'Without order, nothing exists. Without chaos, nothing evolves.',
     source: 'Jedi Mind Tricks',
     citation: 'Heavy Metal Kings',
-    year: 2006
+    year: 2006,
+    category: 'Underground Hip Hop'
   },
   {
     quote: 'We can\'t change the world unless we change ourselves.',
     source: 'The Notorious B.I.G.',
-    year: 1994
+    year: 1994,
+    category: 'Mainstream Rap',
+    region: "East Coast"
   }
 ];
 
@@ -80,7 +89,13 @@ function printQuote() {
   if (quoteSelected.year) {
     html += '<span class="year">' + quoteSelected.year + '</span>';
   }
+  html += '</p>'
+  html += '<p class="category">' + quoteSelected.category;
+  if (quoteSelected.region) {  
+    html += '<span class="region">' + quoteSelected.region + '</span>';
+  }
   html += '</p>';
+
   //log printQuote generated html to console
   //console.log(html);
   div = document.getElementById('quote-box');
