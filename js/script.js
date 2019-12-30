@@ -12,11 +12,9 @@ let html = '';
 let quoteSelected = {};
 let randomNumber;
 
-/*** 
- * `quotes` array 
-***/
+//define quotes array of quote objects
 
-let quotes = [
+const quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -59,9 +57,7 @@ let quotes = [
 //log quotes object to console
 //console.log(quotes);
 
-/***
- * `getRandomQuote` function
-***/
+//random quote function used to select a random quote from quotes object
 
 function getRandomQuote(quotes) {
   randomNumber = Math.floor(Math.random() * quotes.length);
@@ -71,13 +67,12 @@ function getRandomQuote(quotes) {
 //log randomly selected quote to console
 //console.log(getRandomQuote(quotes));
 
-/***
- * `printQuote` function
-***/
+//print function used to assemble html and print to document
 
-function printQuote(quotes) {
+function printQuote() {
   quoteSelected = getRandomQuote(quotes);
-  html += '<p class="quote">' + quoteSelected[quote] + '</p>';
+  html = "";
+  html += '<p class="quote">' + quoteSelected.quote + '</p>';
   html += '<p class="source">' + quoteSelected.source;
   if (quoteSelected.citation) {
     html += '<span class="citation">' + quoteSelected.citation + '</span>';
@@ -86,16 +81,15 @@ function printQuote(quotes) {
     html += '<span class="year">' + quoteSelected.year + '</span>';
   }
   html += '</p>';
-  console.log(html);
+  //log printQuote generated html to console
+  //console.log(html);
   div = document.getElementById('quote-box');
   div.innerHTML = html;
 }
 
-printQuote(quotes);
+//test printQuote function
+//printQuote();
 
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
+//call printQuote function when "Show Another Quote" button is clicked
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
