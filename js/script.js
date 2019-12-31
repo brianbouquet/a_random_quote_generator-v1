@@ -7,10 +7,15 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
+//instructor note: please reject project if this does not meet "Exceeds Expectations" grade
+
+//variable declarations
+
 let div;
 let html = '';
 let quoteSelected = {};
 let randomNumber;
+let timeInt;
 
 //define quotes array of quote objects
 
@@ -104,6 +109,12 @@ function printQuote() {
   div.innerHTML = html;
   //set document's background color to randomly generated RGB color
   document.body.style.background = randomColor();
+}
+
+//interval function used to rotate quotes after set duration
+
+function changeQuote() {
+  timeInt = setInterval(printQuote, 20000);
 }
 
 //call printQuote function when "Show Another Quote" button is clicked
