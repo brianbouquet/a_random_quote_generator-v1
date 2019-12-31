@@ -61,11 +61,6 @@ const quotes = [
   }
 ];
 
-
-
-//log quotes object to console
-//console.log(quotes);
-
 //random quote function used to select a random quote from quotes object
 
 function getRandomQuote(quotes) {
@@ -73,13 +68,22 @@ function getRandomQuote(quotes) {
   return quotes[randomNumber];
 }
 
-//log randomly selected quote to console
-//console.log(getRandomQuote(quotes));
+//random color function used to generate randomly generated RGB color
+function randomColor() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  var rgbColor = 'rgb(' + r + ' ,' + g + ' ,' + b + ")";
+  //log randomly generated RGB color to console
+  console.log(rgbColor);
+  return rgbColor;
+}
 
 //print function used to assemble html and print to document
 
 function printQuote() {
   quoteSelected = getRandomQuote(quotes);
+  //assemble html string
   html = "";
   html += '<p class="quote">' + quoteSelected.quote + '</p>';
   html += '<p class="source">' + quoteSelected.source;
@@ -95,15 +99,12 @@ function printQuote() {
     html += '<span class="region">' + quoteSelected.region + '</span>';
   }
   html += '</p>';
-
-  //log printQuote generated html to console
-  //console.log(html);
+  //set "quote-box" innerHTML to html string assembled
   div = document.getElementById('quote-box');
   div.innerHTML = html;
+  //set document's background color to randomly generated RGB color
+  document.body.style.background = randomColor();
 }
-
-//test printQuote function
-//printQuote();
 
 //call printQuote function when "Show Another Quote" button is clicked
 
