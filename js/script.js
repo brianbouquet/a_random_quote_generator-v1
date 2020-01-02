@@ -75,10 +75,10 @@ function getRandomQuote(quotes) {
 
 //random color function used to generate randomly generated RGB color
 function randomColor() {
-  var r = Math.floor(Math.random() * 256);
-  var g = Math.floor(Math.random() * 256);
-  var b = Math.floor(Math.random() * 256);
-  var rgbColor = 'rgb(' + r + ' ,' + g + ' ,' + b + ")";
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  let rgbColor = 'rgb(' + r + ' ,' + g + ' ,' + b + ")";
   //log randomly generated RGB color to console
   console.log(rgbColor);
   return rgbColor;
