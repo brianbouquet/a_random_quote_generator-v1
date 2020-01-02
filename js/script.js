@@ -10,7 +10,6 @@ project 1 - A Random Quote Generator
 //instructor note: please reject project if this does not meet "Exceeds Expectations" grade
 
 //variable declarations
-
 let div;
 let html = '';
 let quoteSelected = {};
@@ -18,7 +17,6 @@ let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-
 const quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
@@ -67,7 +65,6 @@ const quotes = [
 ];
 
 //random quote function used to select a random quote from quotes object
-
 function getRandomQuote(quotes) {
   randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes[randomNumber];
@@ -85,7 +82,6 @@ function randomColor() {
 }
 
 //print function used to assemble html and print to document
-
 function printQuote() {
   quoteSelected = getRandomQuote(quotes);
   //assemble html string
@@ -109,14 +105,20 @@ function printQuote() {
   div.innerHTML = html;
   //set document's background color to randomly generated RGB color
   document.body.style.background = randomColor();
+  //reset changeQuote() timer
+  resetTimer(timeInt);
 }
 
 //interval function used to rotate quotes after set duration
-
 function changeQuote() {
-  timeInt = setInterval(printQuote, 20000);
+  timeInt = setInterval(printQuote, 10000);
+}
+
+//clear interval function use to reset timer
+function resetTimer(timeInt) {
+  clearInterval(timeInt);
+  changeQuote();
 }
 
 //call printQuote function when "Show Another Quote" button is clicked
-
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
