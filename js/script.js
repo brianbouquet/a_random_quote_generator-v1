@@ -81,7 +81,8 @@ function getRandomQuote(quotes) {
   //generate a random number
   randomNumber = Math.floor(Math.random() * quotes.length);
   //remove random quote object from quotes array and store it in quoteRemoved
-  quoteRemoved = quotes.splice(randomNumber, 1);
+  quoteRemoved = quotes[randomNumber];
+  quotes.splice(randomNumber, 1);
   //log quote removed from quotes to console
   console.log(quoteRemoved);
   //push quote removed into quotesRemoved array
