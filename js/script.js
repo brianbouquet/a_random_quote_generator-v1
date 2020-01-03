@@ -7,8 +7,6 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-//instructor note: please reject project if this does not meet "Exceeds Expectations" grade
-
 //variable declarations
 let div;
 let html = '';
@@ -19,7 +17,7 @@ let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-const quotes = [
+const quotesMaster = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -66,22 +64,26 @@ const quotes = [
   }
 ];
 
-//create a copy of quotes array
-let quotesCopy = [...quotes];
+//create a copy of quotesMaster to use in functions
+let quotesCopy = [...quotesMaster];
+
+//function used to generate random number
+function getRandomNumber(arrayLength) {
+  return Math.floor(Math.random() * arrayLength);
+}
 
 //random quote function used to select a random quote from quotes object
 function getRandomQuote(quotes) {
   //check to see if quotes array is empty and restore quotes
-  if (quotes.length === 0) {
-    randomQuotes.forEach(quote => quotes.push(quote));
-    randomQuotes = [];
+  if (quotes.length === 0) {;
+    quotes = [...quotesMaster];
   }
   //get random number
-  randomNumber = Math.floor(Math.random() * quotes.length);
-  //remove randomly selected quote from quotes array and store in randomQuote
+  randomNumber = getRandomNumber(quotes.length);
+  //randomly select quote and store in randomQuote
   randomQuote = quotes[randomNumber];
-  //push randomly selected quote to random quotes array
-  randomQuotes.push(quotes.splice(randomNumber, 1));
+  //remove randomly selected quote from quotes array
+  quotes.splice(randomNumber, 1);
   return randomQuote;
 }
 
