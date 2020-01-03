@@ -13,11 +13,13 @@ project 1 - A Random Quote Generator
 let div;
 let html = '';
 let quoteSelected = {};
+let quoteRemoved = {};
+let quotesRemoved = [];
 let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-const quotes = [
+let quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -64,10 +66,30 @@ const quotes = [
   }
 ];
 
-//random quote function used to select a random quote from quotes object
-function getRandomQuote(quotes) {
+//OLD: random quote function used to select a random quote from quotes object
+/* function getRandomQuote(quotes) {
   randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes[randomNumber];
+} */
+
+function getRandomQuote(quotes) {
+  //check to see if quotes array is empty
+  if (quotes.length === 0) {
+    //restore quotes array with quotesRemoved objects
+    quotes = quotesRemoved.splice(0, quotesRemoved.length);
+  }
+  //generate a random number
+  randomNumber = Math.floor(Math.random() * quotes.length);
+  //remove random quote object from quotes array and store it in quoteRemoved
+  quoteRemoved = quotes.splice(randomNumber, 1);
+  //log quote removed from quotes to console
+  console.log(quoteRemoved);
+  //push quote removed into quotesRemoved array
+  quotesRemoved.push(quoteRemoved);
+  //log quotesRemoved object to console
+  console.log(quotesRemoved);
+  //return random quote
+  return quoteRemoved;
 }
 
 //random color function used to generate randomly generated RGB color
@@ -75,7 +97,7 @@ function randomColor() {
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);
-  let rgbColor = 'rgb(' + r + ' ,' + g + ' ,' + b + ")";
+  let rgbColor = 'rgb(' + r + ' ,' + g + ' ,' + b + ')';
   //log randomly generated RGB color to console
   console.log(rgbColor);
   return rgbColor;
