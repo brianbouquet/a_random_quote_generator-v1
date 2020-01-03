@@ -19,7 +19,7 @@ let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-let quotes = [
+const quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -66,18 +66,22 @@ let quotes = [
   }
 ];
 
+//create a copy of quotes array
+let quotesCopy = [...quotes];
+
 //random quote function used to select a random quote from quotes object
 function getRandomQuote(quotes) {
   //check to see if quotes array is empty and restore quotes
   if (quotes.length === 0) {
-    quotes = randomQuotes.splice(0, randomQuotes.length);
+    randomQuotes.forEach(quote => quotes.push(quote));
+    randomQuotes = [];
   }
   //get random number
   randomNumber = Math.floor(Math.random() * quotes.length);
   //remove randomly selected quote from quotes array and store in randomQuote
-  randomQuote = quotes.splice(randomNumber, 1);
+  randomQuote = quotes[randomNumber];
   //push randomly selected quote to random quotes array
-  randomQuotes.push(randomQuote);
+  randomQuotes.push(quotes.splice(randomNumber, 1));
   return randomQuote;
 }
 
@@ -94,7 +98,7 @@ function randomColor() {
 
 //print function used to assemble html and print to document
 function printQuote() {
-  quoteSelected = getRandomQuote(quotes);
+  quoteSelected = getRandomQuote(quotesCopy);
   //assemble html string
   html = "";
   html += '<p class="quote">' + quoteSelected.quote + '</p>';
