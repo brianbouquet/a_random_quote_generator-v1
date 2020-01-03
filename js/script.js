@@ -13,11 +13,13 @@ project 1 - A Random Quote Generator
 let div;
 let html = '';
 let quoteSelected = {};
+let randomQuote = {};
+let randomQuotes = [];
 let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-const quotes = [
+let quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -66,8 +68,17 @@ const quotes = [
 
 //random quote function used to select a random quote from quotes object
 function getRandomQuote(quotes) {
+  //check to see if quotes array is empty and restore quotes
+  if (quotes.length === 0) {
+    quotes = randomQuotes.splice(0, randomQuotes.length);
+  }
+  //get random number
   randomNumber = Math.floor(Math.random() * quotes.length);
-  return quotes[randomNumber];
+  //remove randomly selected quote from quotes array and store in randomQuote
+  randomQuote = quotes.splice(randomNumber, 1);
+  //push randomly selected quote to random quotes array
+  randomQuotes.push(randomQuote);
+  return randomQuote;
 }
 
 //random color function used to generate randomly generated RGB color
