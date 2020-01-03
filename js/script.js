@@ -19,7 +19,7 @@ let randomNumber;
 let timeInt;
 
 //define quotes array of quote objects
-let quotes = [
+const quotes = [
   {
     quote: 'Reality is wrong. Dreams are for real.',
     source: 'Tupac Shakur',
@@ -73,21 +73,28 @@ let quotes = [
 } */
 
 function getRandomQuote(quotes) {
+  let quotesNew = [];
+  for (let quote in quotes) {
+    quotesNew.push(quotes[quote]);
+  }
   //check to see if quotes array is empty
-  if (quotes.length === 0) {
+  if (quotesNew.length === 0) {
     //restore quotes array with quotesRemoved objects
-    quotes = quotesRemoved.splice(0, quotesRemoved.length);
+    for (let key in quotesRemoved) {
+      quotesNew.push(quotesRemoved[key]);
+    }
+    quotesRemoved = [];
   }
   //generate a random number
-  randomNumber = Math.floor(Math.random() * quotes.length);
-  //remove random quote object from quotes array and store it in quoteRemoved
-  quoteRemoved = quotes[randomNumber];
-  quotes.splice(randomNumber, 1);
+  randomNumber = Math.floor(Math.random() * quotesNew.length);
+  //Store randomly selected quote in quoteRemoved
+  quoteRemoved = quotesNew[randomNumber];
   //log quote removed from quotes to console
   console.log(quoteRemoved);
   //push quote removed into quotesRemoved array
-  quotesRemoved.push(quoteRemoved);
+  quotesRemoved.push(quotesNew.splice(randomNumber, 1));
   //log quotesRemoved object to console
+  console.log(quotesNew);
   console.log(quotesRemoved);
   //return random quote
   return quoteRemoved;
